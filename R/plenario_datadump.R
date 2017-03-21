@@ -2,6 +2,9 @@ plenario_datadump <- function(dataset = "crimes_2001_to_present",
                               filter = "", 
                               event_window){
     
+    require(httr)
+    require(jsonlite)
+    
     if(filter != ""){
         filter <- paste0(filter, "&", collapse = "&")
     }
@@ -21,6 +24,6 @@ plenario_datadump <- function(dataset = "crimes_2001_to_present",
         feats <- data.table(contentdata$features$properties)
         feats <- feats[ , point_date := as.IDate(point_date)][]
     }
-    
+    cat("Download complete\n")
     return(feats)
 }
