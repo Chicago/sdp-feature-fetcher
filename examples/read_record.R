@@ -1,20 +1,19 @@
 
+rm(list = ls())
+
 # library(jsonlite)
 
-str(jsonlite::fromJSON("../sdp-business.json/ResultSet.json"), 2)
+# str(jsonlite::fromJSON("../sdp-business.json/ResultSet.json"), 2)
+# jsonlite::fromJSON("../sdp-business.json/ResultSet.json")
+
+
 str(RJSONIO::fromJSON("../sdp-business.json/ResultSet.json"), 2)
-
-
-jsonlite::fromJSON("../sdp-business.json/ResultSet.json")
+str(RJSONIO::fromJSON("../sdp-business.json/ResultSet.json")[[1]], 2)
 RJSONIO::fromJSON("../sdp-business.json/ResultSet.json")
 
+recs <- RJSONIO::fromJSON("../sdp-business.json/ResultSet.json")[[1]]
 
-
-str(RJSONIO::fromJSON("../sdp-business.json/ResultSet.json")[[1]], 2)
-
-rec <- RJSONIO::fromJSON("../sdp-business.json/ResultSet.json")[[1]]
-
-
+str(rec)
 
 rec$legalName
 rec$doingBusinessAsName
