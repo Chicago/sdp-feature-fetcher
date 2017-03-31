@@ -1,6 +1,6 @@
 
 
-interpolate_xy <- function(grid, x, y) {
+interpolateXY <- function(grid, x, y) {
     
     ## You can find the x intervals and y intervals with this type of formula:
     xrng <- range(grid$x)
@@ -58,7 +58,7 @@ if(FALSE){
                            y = c(41.84, 41.842, 41.844, 41.849, 41.838, 41.842), 
                            id = c("a", "b", "c", "d", "e", "f"),
                            stringsAsFactors = FALSE)
-    ans <- interpolate_xy(grid_examp, df_examp$x, df_examp$y)
+    ans <- interpolateXY(grid_examp, df_examp$x, df_examp$y)
     
     contour(grid_examp)
     points(df_examp$x, df_examp$y, pch=df_examp$id, col="blue", cex=1.2)
@@ -70,10 +70,10 @@ if(FALSE){
     
     ## NOT RUN ##
     ## These should generate an error
-    ans <- interpolate_xy(grid_examp, df_examp$x + 1, df_examp$y)
-    ans <- interpolate_xy(grid_examp, df_examp$x - 1, df_examp$y)
-    ans <- interpolate_xy(grid_examp, df_examp$x, df_examp$y + 1)
-    ans <- interpolate_xy(grid_examp, df_examp$x, df_examp$y - 1)
+    ans <- interpolateXY(grid_examp, df_examp$x + 1, df_examp$y)
+    ans <- interpolateXY(grid_examp, df_examp$x - 1, df_examp$y)
+    ans <- interpolateXY(grid_examp, df_examp$x, df_examp$y + 1)
+    ans <- interpolateXY(grid_examp, df_examp$x, df_examp$y - 1)
     
 }
 
