@@ -1,6 +1,6 @@
 plenarioDatadump <- function(dataset = "crimes_2001_to_present", 
-                              filter = "", 
-                              event_window){
+                             filter = "", 
+                             event_window){
     
     require(httr)
     require(jsonlite)
