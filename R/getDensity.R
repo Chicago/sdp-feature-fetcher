@@ -1,10 +1,10 @@
 getDensity <- function(records,
-                        events,
-                        datasetname,
-                        filter = NULL,
-                        daysback = 365,
-                        h = c(.01, .01),
-                        return_events = FALSE){
+                       events,
+                       datasetname,
+                       filter = NULL,
+                       daysback = 365,
+                       h = c(.01, .01),
+                       return_events = FALSE){
     
     require(data.table)
     require(MASS)
@@ -16,8 +16,8 @@ getDensity <- function(records,
     
     ## Download event data from plenario
     events <- plenarioDatadump(dataset = datasetname,
-                                filter = filter, 
-                                event_window = event_window)
+                               filter = filter, 
+                               event_window = event_window)
     
     ## Create index values for pages
     N <- nrow(records)
