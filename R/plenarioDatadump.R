@@ -5,7 +5,7 @@ plenarioDatadump <- function(dataset = "crimes_2001_to_present",
     require(httr)
     require(jsonlite)
     
-    if(filter != ""){
+    if(!is.null(filter) && filter != ""){
         filter <- paste0(filter, "&", collapse = "&")
     }
     
