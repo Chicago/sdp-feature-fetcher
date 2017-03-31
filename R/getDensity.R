@@ -1,4 +1,4 @@
-get_density <- function(records,
+getDensity <- function(records,
                         events,
                         datasetname,
                         filter = NULL,
@@ -15,7 +15,7 @@ get_density <- function(records,
                                  max(date))]
     
     ## Download event data from plenario
-    events <- plenario_datadump(dataset = datasetname,
+    events <- plenarioDatadump(dataset = datasetname,
                                 filter = filter, 
                                 event_window = event_window)
     

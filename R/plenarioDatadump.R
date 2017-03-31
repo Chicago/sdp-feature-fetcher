@@ -1,4 +1,4 @@
-plenario_datadump <- function(dataset = "crimes_2001_to_present", 
+plenarioDatadump <- function(dataset = "crimes_2001_to_present", 
                               filter = "", 
                               event_window){
     
