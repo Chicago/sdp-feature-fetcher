@@ -5,12 +5,11 @@ rm(list = ls())
 library(data.table)
 
 ## Load package functions
-geneorama::sourceDir("R")
+sapply(list.files("R", full.names = TRUE), source)
 
 ## load sample
-recs <- parseRecords(RJSONIO::fromJSON("data/examp_mod.json"))
+recs <- parseRecords(infile = "data/examp_mod.json")
 
-recs
 densCrime <- getDensity(records = recs[ , list(date = actionDate, longitude, latitude)], 
                         datasetname = "crimes_2001_to_present", 
                         filter = "primary_type=ARSON",
@@ -29,8 +28,8 @@ densGarbage <- getDensity(records = recs[ , list(date = actionDate, longitude, l
                           return_events = FALSE)
 
 recs[ , densCrime := densCrime[ , z]]
-recs[ , densCrime := densSanitation[ , z]]
-recs[ , densCrime := densGarbage[ , z]]
+recs[ , densSanitation := densSanitation[ , z]]
+recs[ , densGarbage := densGarbage[ , z]]
 
 recs
 

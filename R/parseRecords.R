@@ -1,6 +1,8 @@
 
-parseRecords <- function(recs){
+parseRecords <- function(infile){
+    require(RJSONIO)
     
+    recs <- RJSONIO::fromJSON(infile)
     recsParsed <- lapply(recs, parseRecord)
     recsParsed <- rbindlist(recsParsed)
     return(recsParsed)
