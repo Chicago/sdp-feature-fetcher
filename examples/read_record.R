@@ -12,7 +12,7 @@ targetFieldName <- "result"
 targetCriteria <- "=='FAIL'"
 
 
-rec <- RJSONIO::fromJSON("doc/examp_mod.json")[[1]]
+rec <- RJSONIO::fromJSON("data/examp_mod.json")[[1]]
 str(rec)
 
 # rec$metadata

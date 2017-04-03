@@ -95,7 +95,7 @@ if(FALSE){
     geneorama::sourceDir("R")
     
     ## load sample
-    rec <- RJSONIO::fromJSON("doc/examp_mod.json")[[1]]
+    rec <- RJSONIO::fromJSON("data/examp_mod.json")[[1]]
     # rec$metadata
     # rec$coordinates
     # rec$businessLicenses

@@ -16,7 +16,7 @@ if(FALSE) {
     geneorama::sourceDir("R")
     
     ## load sample
-    recs <- RJSONIO::fromJSON("doc/examp_mod.json")
+    recs <- RJSONIO::fromJSON("data/examp_mod.json")
     
 }
 

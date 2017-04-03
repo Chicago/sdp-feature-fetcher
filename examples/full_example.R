@@ -8,7 +8,7 @@ library(data.table)
 geneorama::sourceDir("R")
 
 ## load sample
-recs <- parseRecords(RJSONIO::fromJSON("doc/examp_mod.json"))
+recs <- parseRecords(RJSONIO::fromJSON("data/examp_mod.json"))
 
 recs
 densCrime <- getDensity(records = recs[ , list(date = actionDate, longitude, latitude)], 
