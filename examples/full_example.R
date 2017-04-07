@@ -1,4 +1,5 @@
 
+if(FALSE){
 
 ## Initialize
 rm(list = ls())
@@ -8,7 +9,7 @@ library(data.table)
 sapply(list.files("R", full.names = TRUE), source)
 
 ## load sample
-recs <- parseRecords(infile = "data/examp_mod.json")
+recs <- parseRecords(infile = "extdata/examp_mod.json")
 
 densCrime <- getDensity(records = recs[ , list(date = actionDate, longitude, latitude)], 
                         datasetname = "crimes_2001_to_present", 
@@ -33,3 +34,4 @@ recs[ , densGarbage := densGarbage[ , z]]
 
 recs
 
+}

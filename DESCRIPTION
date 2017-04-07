@@ -24,6 +24,7 @@ Depends:
     R (>= 3.0.0)
 Imports:
     httr (>= 1.2.1),
+    jsonlite (>= 1.2),
     RJSONIO (>= 1.3-0),
     MASS (>= 7.3-45),
     data.table (>= 1.1.0)

@@ -1,4 +1,6 @@
 
+if(FALSE){
+
 
 ##------------------------------------------------------------------------------
 ## ORIGINAL EXAMPLE
@@ -75,4 +77,4 @@ contentdata <- jsonlite::fromJSON(contentdata)
 str(contentdata)
 table(contentdata$features$properties[ , "primary_type"])
 
-
+}

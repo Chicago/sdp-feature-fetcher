@@ -1,3 +1,53 @@
+#' parseRecord
+#' Read in JSON data from business.json and parse into table with fields
+#' 
+#' @param rec                Single business record from business.json file 
+#'                           formatted as a list (full list a la RJSONIO 
+#'                           format, not jsonlite format)
+#' @param evalDays           A integer vector that specifies the days at which 
+#'                           you want to calculate trailing counts of the 
+#'                           target observation. Both counts and counts where 
+#'                           the criteria is true (described in 
+#'                           targetCriteria) are tabulated. For example, a 
+#'                           vector of c(60, 365, 3650) will calculate number 
+#'                           of inspections and number of failed inspections in
+#'                           the past 60 days, 1 year, and roughly 10 years.
+#' @param inspectionType     The the name of the top level list item in the 
+#'                           JSON document that contains the event of interest.
+#'                           This is the "unit of analysis" for each record. In 
+#'                           the sample data this field is "foodInspections".
+#' @param targetFieldName    The name of the field that describes the outcome
+#'                           that you are modeling. In the sample data this
+#'                           it's a field called "result" that takes on the 
+#'                           values "PASS" or "FAIL".
+#' @param targetCriteria     This controls how the binary results are 
+#'                           calculated on the target. This field is code that 
+#'                           gets evaluated on the values in the target, to 
+#'                           create boolean results. In this example the 
+#'                           criteria is "==FAIL". This string is appended to 
+#'                           the strings contained in the targetFieldName and
+#'                           evaluated so that FAIL will appear as TRUE and 
+#'                           anything else will be FALSE. It is also possible
+#'                           to use numeric criteria for numeric targets, such
+#'                           as ">235" or "<1e6".
+#' 
+#' @return          A data.table object based on the parsed record input
+#' 
+#' @author Gene Leynes \email{gene.leynes@@cityofchicago.org}
+#' 
+#' @description     Creates tabular data for use in machine learning models or 
+#'                  statistical analysis. The input must be a specialized 
+#'                  JSON document based on the format described in 
+#'                  https://github.com/Chicago/sdp-business.json
+#'                  
+#'                  \code{parseRecord} parses a single record after it has been
+#'                  converted to a list object using \code{RJSONIO}
+#' 
+#' @examples
+#'     # parseRecord(RJSONIO::fromJSON("extdata/examp_mod.json")[[1]])
+#' 
+#' @export parseRecord
+#' 
 
 parseRecord <- function(rec,
                         evalDays = c(90, 365, 365 * 2),
@@ -5,6 +55,12 @@ parseRecord <- function(rec,
                         targetFieldName = "result",
                         targetCriteria = "=='FAIL'"){
     require(data.table)
+    
+    actionDate <- NULL
+    target <- NULL
+    targetBool <- NULL
+    earliestStartDate <- NULL
+    ageAtActionDate <- NULL
     
     ## Get field index values and field labels
     iInspectionIndex <- which(sapply(rec$metadata, `[[`, "sourceName") == inspectionType)
