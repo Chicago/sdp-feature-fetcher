@@ -26,11 +26,11 @@
 #' @export
 
 
-parseRecords <- function(infile){
+parseRecords <- function(infile, ...){
     require(RJSONIO)
     
     recs <- RJSONIO::fromJSON(infile)
-    recsParsed <- lapply(recs, parseRecord)
+    recsParsed <- lapply(recs, parseRecord, ...)
     recsParsed <- rbindlist(recsParsed)
     return(recsParsed)
 
